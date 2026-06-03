@@ -66,5 +66,10 @@ namespace BankUI
         {
             dgvStatement.DataSource = TransactionDl.GetTransactionsByDateRangeDataTable(LoggedInUser, dtpFrom.Value, dtpTo.Value);
         }
+
+        private void dtpTo_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -59,21 +59,7 @@ namespace BankUI.BL
             return false;
         }
 
-        public static bool Transfer(string senderName, string receiverName, double amount)
-        {
-            User sender = UserDl.GetUser(senderName);
-            User receiver = UserDl.GetUser(receiverName);
 
-            if (sender == null || receiver == null) return false;
-
-            Transaction txn = new Transaction(sender, receiver, amount);
-            if (!txn.Process()) return false;
-
-            UserDl.UpdateBalance(sender.GetUsername(), sender.GetBalance());
-            UserDl.UpdateBalance(receiver.GetUsername(), receiver.GetBalance());
-            TransactionDl.AddTransaction(txn);
-            return true;
-        }
     }
 }
 

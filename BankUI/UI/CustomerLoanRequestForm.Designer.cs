@@ -271,6 +271,7 @@ namespace BankUI
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(400, 32);
             this.txtAmount.TabIndex = 3;
+            this.txtAmount.TextChanged += new System.EventHandler(this.txtAmount_TextChanged);
             // 
             // btnApply
             // 

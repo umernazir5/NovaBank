@@ -64,11 +64,28 @@ namespace BankUI
         }
         private void btnApply_Click(object sender, EventArgs e)
         {
-            double amount = double.Parse(txtAmount.Text);
+         
+            if (!double.TryParse(txtAmount.Text, out double amount))
+            {
+               
+                MessageBox.Show("Please enter a valid numeric amount.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (amount <= 0)
+            {
+                MessageBox.Show("The loan amount must be greater than zero.", "Invalid Amount", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             Loan loan = new Loan(0, UserDl.GetUser(LoggedInUser), amount, "Pending");
             LoanDl.AddLoan(loan);
             lblStatus.Text = "Loan Requested";
             MessageBox.Show("Loan Request Submitted Successfully");
         }
+
+        private void txtAmount_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+

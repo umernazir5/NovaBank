@@ -46,36 +46,6 @@ namespace BankUI.BL
         {
             return status;
         }
-        public static bool RequestLoan(string username, string password, double amount)
-        {
-            User verified = User.VerifyUser(username, password);
-            if (verified == null) return false;
-
-            LoanDl.AddLoan(new Loan(verified, amount));
-            return true;
-        }
-
-        public static bool ProcessLoan(int loanId, string newStatus)
-        {
-            List<Loan> pending = LoanDl.GetLoansByStatus("Pending");
-            bool found = false;
-            foreach (Loan l in pending)
-            {
-                if (l.GetId() == loanId)
-                {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) return false;
-
-            LoanDl.UpdateLoanStatus(newStatus, loanId);
-            return true;
-        }
-
-        public static List<Loan> GetByStatus(string status)
-        {
-            return LoanDl.GetLoansByStatus(status);
-        }
+ 
     }
 }

@@ -75,7 +75,7 @@ namespace BankUI
                         senderUser.Withdraw(amount);
                         receiverUser.Deposit(amount);
                         
-                        // Persist changes to DB
+                        
                         UserDl.UpdateBalance(senderUser.GetUsername(), senderUser.GetBalance());
                         UserDl.UpdateBalance(receiverUser.GetUsername(), receiverUser.GetBalance());
                         

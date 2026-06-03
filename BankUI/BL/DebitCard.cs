@@ -70,23 +70,5 @@ namespace BankUI.BL
             return user.GetBalance() >= 500;
         }
 
-        public static bool CardAlreadyExists(string username)
-        {
-            return DebitCardDl.GetUserCard(username) != null;
-        }
-        public static DebitCard IssueCard(string username, string password)
-        {
-            User user = User.VerifyUser(username, password);
-            if (user == null) return null;
-
-            DebitCard existing = DebitCardDl.GetUserCard(username);
-            if (existing != null) return null;
-
-            if (!HasSufficientBalance(user)) return null;
-
-            return new DebitCard(user);
-        }
-
-
     }
 }

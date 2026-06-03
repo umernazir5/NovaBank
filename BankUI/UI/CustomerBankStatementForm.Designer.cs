@@ -294,6 +294,7 @@ namespace BankUI
             this.dtpTo.Name = "dtpTo";
             this.dtpTo.Size = new System.Drawing.Size(180, 30);
             this.dtpTo.TabIndex = 5;
+            this.dtpTo.ValueChanged += new System.EventHandler(this.dtpTo_ValueChanged);
             // 
             // btnView
             // 

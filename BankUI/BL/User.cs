@@ -76,45 +76,7 @@ namespace BankUI.BL
         {
             return balance;
         }
-        public static User VerifyUser(string username, string password)
-        {
-            User found = UserDl.GetUser(username);
-            if (found == null || password != found.GetPassword())
-                return null;
-            return found;
-        }
-        public bool TryWithdraw(double amount)
-        {
-            if (!Withdraw(amount)) return false;
-            UserDl.UpdateBalance(username, balance);
-            return true;
-        }
 
-        public void DepositAndSave(double amount)
-        {
-            Deposit(amount);
-            UserDl.UpdateBalance(username, balance);
-        }
-        public static bool AdminDeleteAccount(string username)
-        {
-            User target = UserDl.GetUser(username);
-            if (target == null) return false;
-            return UserDl.DeleteAccount(target.GetUsername());
-        }
 
-        public static bool SelfDeleteAccount(string username, string password)
-        {
-            User verified = VerifyUser(username, password);
-            if (verified == null) return false;
-            return UserDl.DeleteAccount(verified.GetUsername());
-        }
-
-        public static bool AdminUpdatePassword(string username, string newPassword)
-        {
-            User target = UserDl.GetUser(username);
-            if (target == null) return false;
-            UserDl.UpdatePassword(username, newPassword);
-            return true;
-        }
     }
 }
