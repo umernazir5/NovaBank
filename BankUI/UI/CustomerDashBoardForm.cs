@@ -12,7 +12,7 @@ namespace BankUI
             InitializeComponent();
             LoggedInUser = user;
             User u = UserDl.GetUser(LoggedInUser);
-            lblBalance.Text = $"Balance: ${u.GetBalance()}";
+            lblBalance.Text = $"Balance: Rs : {u.GetBalance()}";
             dgvRecentTx.DataSource = TransactionDl.GetTop5UserTransactionsDataTable(LoggedInUser);
         }
         private void btnNavDashboard_Click(object sender, EventArgs e) { }

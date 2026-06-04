@@ -345,6 +345,7 @@ namespace BankUI
             this.dgvStatement.RowHeadersWidth = 51;
             this.dgvStatement.Size = new System.Drawing.Size(990, 510);
             this.dgvStatement.TabIndex = 7;
+            this.dgvStatement.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStatement_CellContentClick);
             // 
             // CustomerBankStatementForm
             // 

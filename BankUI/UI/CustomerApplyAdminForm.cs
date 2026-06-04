@@ -64,6 +64,12 @@ namespace BankUI
         }
         private void btnApply_Click(object sender, EventArgs e)
         {
+            
+            if (AdminRequestDl.HasAnyRequest(LoggedInUser))
+            {
+                MessageBox.Show("You have already submitted an admin request. Please wait for the administrator's review. Request Denied");
+                return; 
+            }
             AdminRequest req = new AdminRequest(0, LoggedInUser, "Pending");
             AdminRequestDl.AddRequest(req);
             lblStatus.Text = "Request Submitted";

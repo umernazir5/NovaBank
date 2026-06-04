@@ -1,4 +1,5 @@
 using BankUI.BL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -83,6 +84,12 @@ namespace BankUI.DL
         public static DataTable GetAllRequestsDataTable()
         {
             return DbHelper.ExecuteQuery("SELECT * FROM admin_requests");
+        }
+        public static bool HasAnyRequest(string username)
+        {
+            string query = $"SELECT * FROM admin_requests WHERE username = '{username}'";
+            DataTable dt = DbHelper.ExecuteQuery(query);
+            return dt.Rows.Count > 0;
         }
     }
 }

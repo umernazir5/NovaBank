@@ -71,5 +71,10 @@ namespace BankUI
         {
 
         }
+
+        private void dgvStatement_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

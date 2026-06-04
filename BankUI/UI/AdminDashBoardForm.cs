@@ -70,7 +70,6 @@ namespace BankUI
         private void lblcardUsersV_Click(object sender, EventArgs e)
         {
             int totalusers = UserDl.GetAllUsers().Count;
-            
 
         }
 
