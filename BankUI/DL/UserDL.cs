@@ -30,12 +30,21 @@ namespace BankUI.DL
             if (dt.Rows.Count > 0)
             {
                 DataRow row = dt.Rows[0];
-                return new User(
-                    row["username"].ToString(),
-                    row["password"].ToString(),
-                    row["userrole"].ToString(),
-                    double.Parse(row["balance"].ToString())
-                );
+                string role = row["userrole"].ToString();
+                string uname = row["username"].ToString();
+                string pass = row["password"].ToString();
+                double balance = double.Parse(row["balance"].ToString());
+
+                if (role == "Admin")
+                {
+                    User user = new Admin(uname, pass, balance);
+                    return user;
+                }
+                else
+                {
+                    User user = new Customer(uname, pass, balance);
+                    return user;
+                }
             }
             return null;
         }
@@ -70,12 +79,21 @@ namespace BankUI.DL
             if (dt.Rows.Count > 0)
             {
                 DataRow row = dt.Rows[0];
-                return new User(
-                    row["username"].ToString(),
-                    row["password"].ToString(),
-                    row["userrole"].ToString(),
-                    double.Parse(row["balance"].ToString())
-                );
+                string role = row["userrole"].ToString();
+                string uname = row["username"].ToString();
+                string pass = row["password"].ToString();
+                double balance = double.Parse(row["balance"].ToString());
+
+                if (role == "Admin")
+                {
+                    User user = new Admin(uname, pass, balance);
+                    return user;
+                }
+                else
+                {
+                    User user = new Customer(uname, pass, balance);
+                    return user;
+                }
             }
             return null;
         }
@@ -88,16 +106,24 @@ namespace BankUI.DL
 
             foreach (DataRow row in dt.Rows)
             {
-                users.Add(new User(
-                    row["username"].ToString(),
-                    row["password"].ToString(),
-                    row["userrole"].ToString(),
-                    double.Parse(row["balance"].ToString())
-                ));
+                string role = row["userrole"].ToString();
+                string uname = row["username"].ToString();
+                string pass = row["password"].ToString();
+                double balance = double.Parse(row["balance"].ToString());
+
+                if (role == "Admin")
+                {
+                    User user = new Admin(uname, pass, balance);
+                    users.Add(user);
+                }
+                else
+                {
+                    User user = new Customer(uname, pass, balance);
+                    users.Add(user);
+                }
             }
             return users;
         }
-      
 
         public static void UpdateBalance(string username, double newBalance)
         {

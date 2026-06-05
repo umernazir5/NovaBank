@@ -67,24 +67,39 @@ namespace BankUI
         }
         private void btnApprove_Click(object sender, EventArgs e)
         {
-            if (dgvRequests.SelectedRows.Count > 0)
+            try
             {
-                int reqId = int.Parse(dgvRequests.SelectedRows[0].Cells["request_id"].Value.ToString());
-                string username = dgvRequests.SelectedRows[0].Cells["username"].Value.ToString();
-                AdminRequestDl.ProcessAdminRequest(reqId, username, "Approved");
-                MessageBox.Show("Request Approved");
-                LoadRequests();
+                if (dgvRequests.SelectedRows.Count > 0)
+                {
+                    int reqId = int.Parse(dgvRequests.SelectedRows[0].Cells[0].Value.ToString());
+                    string username = dgvRequests.SelectedRows[0].Cells[1].Value.ToString();
+                    AdminRequestDl.ProcessAdminRequest(reqId, username, "Approved");
+                    MessageBox.Show("Request Approved");
+                    LoadRequests();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error approving: " + ex.Message);
             }
         }
         private void btnReject_Click(object sender, EventArgs e)
         {
-            if (dgvRequests.SelectedRows.Count > 0)
+            try
             {
-                int reqId = int.Parse(dgvRequests.SelectedRows[0].Cells["request_id"].Value.ToString());
-                string username = dgvRequests.SelectedRows[0].Cells["username"].Value.ToString();
-                AdminRequestDl.ProcessAdminRequest(reqId, username, "Rejected");
-                MessageBox.Show("Request Rejected");
-                LoadRequests();
+                if (dgvRequests.SelectedRows.Count > 0)
+                {
+                    int reqId = int.Parse(dgvRequests.SelectedRows[0].Cells[0].Value.ToString());
+                    string username = dgvRequests.SelectedRows[0].Cells[1].Value.ToString();
+
+                    AdminRequestDl.ProcessAdminRequest(reqId, username, "Rejected");
+                    MessageBox.Show("Request Rejected");
+                    LoadRequests();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error rejecting: " + ex.Message);
             }
         }
     }

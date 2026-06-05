@@ -72,12 +72,18 @@ namespace BankUI.DL
 
         public static void ProcessAdminRequest(int requestId, string username, string newStatus)
         {
-            UpdateRequestStatus(requestId, newStatus);
+            string updateRequestQuery = $"UPDATE admin_requests SET status = '{newStatus}' WHERE request_id = {requestId}";
+            DbHelper.ExecuteNonQuery(updateRequestQuery);
 
             if (newStatus == "Approved")
             {
-                UserDl.UpdateUserRole(username, "Admin");
-                UserDl.RefreshUsers();
+                string updateUserRoleQuery = $"UPDATE users SET userrole = 'Admin' WHERE username = '{username}'";
+                DbHelper.ExecuteNonQuery(updateUserRoleQuery);
+            }
+            else
+            {
+                string updateUserRoleQuery = $"UPDATE users SET userrole = 'Customer' WHERE username = '{username}'";
+                DbHelper.ExecuteNonQuery(updateUserRoleQuery);
             }
         }
 

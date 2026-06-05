@@ -16,7 +16,7 @@ namespace BankUI
                 MessageBox.Show("Passwords do not match");
                 return;
             }
-            User user = new User(txtUsername.Text, txtPassword.Text, "Customer", 0);
+            User user = new Customer(txtUsername.Text, txtPassword.Text, 0);
             UserDl.AddUser(user);
             MessageBox.Show("Registration successful!");
             LoginForm login = new LoginForm();

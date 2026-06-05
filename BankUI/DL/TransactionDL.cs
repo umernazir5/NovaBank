@@ -34,8 +34,8 @@ namespace BankUI.DL
 
             foreach (DataRow row in dt.Rows)
             {
-                User sender = new User(row["sender"].ToString(), "", "", 0);
-                User receiver = new User(row["receiver"].ToString(), "", "", 0);
+                User sender = new Customer(row["sender"].ToString(), "", 0);
+                User receiver = new Customer(row["receiver"].ToString(), "", 0);
                 double amount = double.Parse(row["amount"].ToString());
                 DateTime transactionDate = DateTime.Parse(row["transaction_date"].ToString());
                 list.Add(new Transaction(sender, receiver, amount, transactionDate));
@@ -51,8 +51,8 @@ namespace BankUI.DL
 
             foreach (DataRow row in dt.Rows)
             {
-                User sender = new User(row["sender"].ToString(), "", "", 0);
-                User receiver = new User(row["receiver"].ToString(), "", "", 0);
+                User sender = new Customer(row["sender"].ToString(), "", 0);
+                User receiver = new Customer(row["receiver"].ToString(), "", 0);
                 double amount = double.Parse(row["amount"].ToString());
                 DateTime transactionDate = DateTime.Parse(row["transaction_date"].ToString());
                 list.Add(new Transaction(sender, receiver, amount, transactionDate));
@@ -63,7 +63,7 @@ namespace BankUI.DL
         {
 
             return DbHelper.ExecuteQuery($"SELECT Top 5* FROM transactions ORDER BY transaction_date DESC");
-            
+
         }
 
         public static DataTable GetTop5UserTransactionsDataTable(string username)

@@ -34,7 +34,7 @@ namespace BankUI.DL
             foreach (DataRow row in dt.Rows)
             {
                 int id = int.Parse(row["loanid"].ToString());
-                User user = new User(row["username"].ToString(), "", "", 0);
+                User user = new Customer(row["username"].ToString(), "", 0);
                 double amount = double.Parse(row["amount"].ToString());
                 string status = row["status"].ToString();
                 loans.Add(new Loan(id, user, amount, status));
@@ -51,7 +51,7 @@ namespace BankUI.DL
             foreach (DataRow row in dt.Rows)
             {
                 int id = int.Parse(row["loanid"].ToString());
-                User user = new User(row["username"].ToString(), "", "", 0);
+                User user = new Customer(row["username"].ToString(), "", 0);
                 double amount = double.Parse(row["amount"].ToString());
                 string rowStatus = row["status"].ToString();
                 loans.Add(new Loan(id, user, amount, rowStatus));
